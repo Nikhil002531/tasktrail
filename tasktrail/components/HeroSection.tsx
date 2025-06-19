@@ -6,23 +6,23 @@ import Image from 'next/image'
 const slides = [
   {
     title: 'Task Management',
-    img: '/assets/feature1.png',
-    hoverImg: '/assets/feature1-hover.png',
+    img: '/assets/Task-management.jpg',
+    hoverImg: '/assets/Task-manager.jpg',
   },
   {
     title: 'Team Collaboration',
-    img: '/assets/feature2.png',
-    hoverImg: '/assets/feature2-hover.png',
+    img: '/assets/team-collab.jpg',
+    hoverImg: '/assets/team-2.jpg',
   },
   {
     title: 'Timeline View',
-    img: '/assets/feature3.png',
-    hoverImg: '/assets/feature3-hover.png',
+    img: '/assets/timeline1.jpg',
+    hoverImg: '/assets/time2.jpg',
   },
   {
     title: 'Insights & Reports',
-    img: '/assets/feature4.png',
-    hoverImg: '/assets/feature4-hover.png',
+    img: '/assets/insightjpg.jpg',
+    hoverImg: '/assets/reports.jpg',
   },
 ];
 
@@ -54,15 +54,17 @@ export default function HeroSection() {
           <Image
             src={slide.img}
             alt={slide.title}
+            width={400} // <-- set proper values
+            height={256} // <-- adjust based on actual image size or preference
             className="rounded-xl w-full h-64 object-cover shadow-2xl transition-opacity duration-500 group-hover:opacity-0"
-          />
-          {/* Hover Image */}
+          />          {/* Hover Image */}
           <Image
             src={slide.hoverImg}
             alt={`${slide.title} hover`}
+            width={400}
+            height={256}
             className="absolute inset-0 w-full h-64 object-cover rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
           />
-
           {/* Overlay text */}
           <div className="absolute bottom-0 left-0 right-0 bg-black/50 p-4 rounded-b-xl">
             <h2 className="text-lg font-semibold">{slide.title}</h2>

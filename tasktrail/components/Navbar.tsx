@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState } from 'react';
@@ -9,10 +8,10 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
-    { name: 'Features', href: '#features' },
-    { name: 'Analytics', href: '#analytics' },
+    { name: 'Features', href: '/features' },
+    { name: 'Analytics', href: '/graph' },
     { name: 'Demo', href: '#demo' },
-    { name: 'Testimonials', href: '#testimonials' },
+    { name: 'Testimonials', href: '/testimonials' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -28,13 +27,13 @@ const Navbar = () => {
           {/* Desktop Nav */}
           <div className="hidden md:flex space-x-6">
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.name}
                 href={item.href}
                 className="text-gray-800 dark:text-gray-100 hover:text-indigo-600 transition"
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
           </div>
 
@@ -54,14 +53,14 @@ const Navbar = () => {
       {isOpen && (
         <div className="md:hidden px-4 pb-4 pt-2 bg-white dark:bg-black shadow-lg">
           {navItems.map((item) => (
-            <a
+            <Link
               key={item.name}
               href={item.href}
               onClick={() => setIsOpen(false)}
               className="block py-2 text-gray-800 dark:text-gray-100 hover:text-indigo-600 transition"
             >
               {item.name}
-            </a>
+            </Link>
           ))}
         </div>
       )}

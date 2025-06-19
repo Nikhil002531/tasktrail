@@ -51,7 +51,6 @@ export default function HeroSection() {
         text.toLowerCase().includes(keyword) && keywords[highlightedKeywordIndex] === keyword
       );
 
-
       return (
         <span
           key={i}
@@ -66,26 +65,22 @@ export default function HeroSection() {
     });
   };
 
-
   return (
     <section
       id="hero"
       className="relative overflow-hidden min-h-screen flex flex-col items-center justify-center py-24 px-6
-                 bg-gradient-to-br from-indigo-900 via-blue-900 to-purple-900 text-white" // Darker, more vibrant gradient
+                 bg-gradient-to-br from-indigo-900 via-blue-900 to-purple-900 text-white"
     >
       {/* Background Blobs/Shapes - for visual interest */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
-        <div className="absolute top-1/2 right-1/4 w-80 h-80 bg-purple-500/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-1/4 left-1/3 w-72 h-72 bg-indigo-500/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000"></div>
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-pulse"></div>
+        <div className="absolute top-1/2 right-1/4 w-80 h-80 bg-purple-500/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute bottom-1/4 left-1/3 w-72 h-72 bg-indigo-500/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-pulse" style={{ animationDelay: '4s' }}></div>
       </div>
 
-
       <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col items-center justify-center">
-        {/* Top Social Proof / Ratings */}
-
         {/* Main Headline */}
-        <div className="text-center mb-12" data-aos="fade-up" data-aos-delay="200">
+        <div className="text-center mb-12">
           <h1 className="text-5xl md:text-7xl font-extrabold mb-6 text-white leading-tight drop-shadow-lg">
             Create {getHighlightedText('reports')}, {getHighlightedText('forecasts')}, {getHighlightedText('dashboards')} & {getHighlightedText('consolidations')}
           </h1>
@@ -95,46 +90,63 @@ export default function HeroSection() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full shadow-lg transition-all duration-300 transform hover:scale-105" data-aos="zoom-in" data-aos-delay="400">
+            <button className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full shadow-lg transition-all duration-300 transform hover:scale-105">
               Start 14-day free trial
             </button>
-            <button className="px-8 py-3 bg-transparent border border-gray-400 hover:border-white text-gray-200 hover:text-white font-semibold rounded-full transition-all duration-300 transform hover:scale-105" data-aos="zoom-in" data-aos-delay="500">
+            <button className="px-8 py-3 bg-transparent border border-gray-400 hover:border-white text-gray-200 hover:text-white font-semibold rounded-full transition-all duration-300 transform hover:scale-105">
               See what we do
             </button>
           </div>
         </div>
 
-        {/* Feature Cards Grid */}
-        <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 max-w-6xl mx-auto mt-16">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className="relative group bg-white/10 backdrop-blur-xl p-6 rounded-2xl border border-white/20
-                         shadow-lg dark:shadow-[0_8px_25px_rgba(255,255,255,0.05)]
-                         hover:shadow-[0_15px_60px_rgba(0,0,0,0.3)] dark:hover:shadow-[0_0_50px_rgba(255,255,255,0.15)]
-                         transition-all hover:scale-[1.03] cursor-default
-                         overflow-visible" // Important for preview card to be visible
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              data-aos="zoom-in"
-              data-aos-delay={index * 150 + 600} // Staggered animation after main hero elements
-            >
-              <h3 className="text-xl font-semibold mb-2 text-white drop-shadow">
-                {feature.title}
-              </h3>
-              <p className="text-gray-300 text-sm leading-relaxed">{feature.desc}</p>
+        {/* Feature Cards Grid - Fixed container with proper overflow handling */}
+        <div className="relative w-full max-w-6xl mx-auto mt-16 pb-32">
+          <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+            {features.map((feature, index) => (
+              <div
+                key={index}
+                className="relative group bg-white/10 backdrop-blur-xl p-6 rounded-2xl border border-white/20
+                           shadow-lg hover:shadow-2xl
+                           transition-all duration-300 hover:scale-[1.03] cursor-default
+                           z-10"
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+              >
+                <h3 className="text-xl font-semibold mb-2 text-white drop-shadow">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-300 text-sm leading-relaxed">{feature.desc}</p>
 
-              {/* Floating preview card */}
-              {hoveredIndex === index && (
-                <div className="absolute left-1/2 -translate-x-1/2 top-full mt-6 w-72 p-5
-                            bg-white/20 dark:bg-gray-800/80 text-sm text-gray-100 rounded-xl
-                            border border-white/30 shadow-2xl backdrop-blur-xl
-                            animate-fade-in-up z-50 transform group-hover:-translate-y-2 transition-transform duration-300">
-                  {feature.preview}
-                </div>
-              )}
-            </div>
-          ))}
+                {/* Fixed floating preview card with proper positioning */}
+                {hoveredIndex === index && (
+                  <div
+                    className={`
+                      absolute left-1/2 transform -translate-x-1/2 w-72 p-5
+                      bg-white/95 text-gray-800 text-sm rounded-xl
+                      border border-white/30 shadow-2xl backdrop-blur-xl
+                      transition-all duration-300 ease-out
+                      animate-pulse z-50
+                      ${index < 2 ? 'top-full mt-4' : 'bottom-full mb-4'}
+                    `}
+                  >
+                    <div className="font-medium text-gray-900 mb-2">Preview:</div>
+                    {feature.preview}
+
+                    {/* Arrow pointer */}
+                    <div
+                      className={`
+                        absolute left-1/2 transform -translate-x-1/2 w-0 h-0
+                        ${index < 2
+                          ? 'top-0 -mt-2 border-l-8 border-r-8 border-b-8 border-transparent border-b-white/95'
+                          : 'bottom-0 -mb-2 border-l-8 border-r-8 border-t-8 border-transparent border-t-white/95'
+                        }
+                      `}
+                    />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

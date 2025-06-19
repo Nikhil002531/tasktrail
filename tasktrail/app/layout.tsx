@@ -15,11 +15,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="bg-white dark:bg-black text-gray-900 dark:text-white transition-colors">
+    <html lang="en" suppressHydrationWarning>
+      <body className="transition-colors">
         <LayoutWrapper>
           <Navbar />
-          <main className="pt-20">{children}</main>
+          <main className="pt-20 bg-white dark:bg-black text-gray-900 dark:text-white transition-colors duration-300">
+            {children}
+          </main>
         </LayoutWrapper>
       </body>
     </html>
