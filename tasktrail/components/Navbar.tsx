@@ -10,9 +10,9 @@ const Navbar = () => {
   const navItems = [
     { name: 'Features', href: '/features' },
     { name: 'Analytics', href: '/graph' },
-    { name: 'Demo', href: '#demo' },
+    { name: 'Demo', href: '/demo' },
     { name: 'Testimonials', href: '/testimonials' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   return (
