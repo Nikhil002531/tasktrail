@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image'
 
 const slides = [
   {
@@ -50,13 +51,13 @@ export default function HeroSection() {
         {/* Animated card with hover flip */}
         <div className="relative w-full max-w-md mx-auto group transition-transform duration-700 transform hover:scale-105">
           {/* Main Image */}
-          <img
+          <Image
             src={slide.img}
             alt={slide.title}
             className="rounded-xl w-full h-64 object-cover shadow-2xl transition-opacity duration-500 group-hover:opacity-0"
           />
           {/* Hover Image */}
-          <img
+          <Image
             src={slide.hoverImg}
             alt={`${slide.title} hover`}
             className="absolute inset-0 w-full h-64 object-cover rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"

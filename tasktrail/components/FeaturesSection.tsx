@@ -47,7 +47,7 @@ export default function HeroSection() {
       const isCurrentlyHighlighted = isKeyword && keywords[highlightedKeywordIndex] === lowerCaseWord;
 
       // Check for partial matches or if the word contains one of the keywords
-      const containsHighlighted = keywords.some((keyword, idx) =>
+      const containsHighlighted = keywords.some((keyword) =>
         text.toLowerCase().includes(keyword) && keywords[highlightedKeywordIndex] === keyword
       );
 
